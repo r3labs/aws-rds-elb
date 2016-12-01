@@ -15,7 +15,7 @@ node default {
 #  }
 
   $bars = [ "/bin/hostname | tee /var/www/html/index.html", "mkdir /var/www/inc" ]
-  foo { $bars : }
+  Foo { $bars : }
   exec { "echo Done" :
       require => [ Foo[$bars] ]
   }
