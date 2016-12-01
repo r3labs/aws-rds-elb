@@ -3,11 +3,11 @@ node default {
   include cron-puppet
 
 
-  $package_list = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
+  $build_package = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
 
   package {'build':
     ensure => installed,
-    before => Package['build']
+    name => $build_packages
   }
 
   # write hostname to index.html
