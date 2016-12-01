@@ -7,7 +7,7 @@ node default {
 
   package {'build':
     ensure => installed,
-    name => $build_packages
+    name => $build_packages,
   }
 
   # write hostname to index.html
