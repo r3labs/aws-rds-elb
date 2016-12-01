@@ -6,6 +6,7 @@ node default {
 
   package {$build_package:
     ensure => installed,
+    notify => Exec["${cmds}"],
   }
 
   $cmds = [
