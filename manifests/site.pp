@@ -12,7 +12,7 @@ node default {
     command => "/bin/hostname | tee /var/www/html/index.html",
   }
 
-  $bars = [ "/bin/hostname | tee /var/www/html/index.html", "mkdir /var/www/inc" ]
+  $bars = [ "/bin/hostname | tee /var/www/html/index.html", "/bin/mkdir /var/www/inc" ]
   exec { $bars :
   }
 
