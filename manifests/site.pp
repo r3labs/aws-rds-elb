@@ -9,7 +9,7 @@ node default {
 #  }
 
   package { 'installer':
-    $package_list = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
+    $package_list = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ],
     package { $package_list: ensure => 'installed' }
   }
 
