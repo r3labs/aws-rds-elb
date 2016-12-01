@@ -5,7 +5,7 @@ node default {
 
   $package_list = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
 
-  package {'install':
+  package {'build':
     ensure => installed,
     before => Package['build']
   }
