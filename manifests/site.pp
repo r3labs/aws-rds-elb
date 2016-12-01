@@ -8,9 +8,10 @@ node default {
 #    notify => Exec['update_index']
 #  }
 
-  package { 'installer':
-    $package_list = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ],
-    package { $package_list: ensure => 'installed' }
+  $package_list = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
+  packages {"install":
+    ensure => installed,
+    before => Package['build']
   }
 
   # write hostname to index.html
