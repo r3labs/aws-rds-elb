@@ -30,7 +30,7 @@ node default {
     recurse => true,
   }
 
-  file { "/var/www" :
+  file { "set_files" :
     require => File["set_dirs"],
     name => "/var/www/",
     ensure => file,
