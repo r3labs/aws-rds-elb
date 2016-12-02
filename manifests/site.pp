@@ -20,12 +20,23 @@ node default {
     groups => "www",
   }
 
-  file { "/var/www" :
+  file { "set_dirs" :
     require => User["ubuntu"],
+    name => "/var/www",
     ensure => directory,
     owner => root,
     group => www,
     mode => 2775,
+    recurse => true,
+  }
+
+  file { "/var/www" :
+    require => File["set_dirs"],
+    name => "/var/www/",
+    ensure => file,
+    owner => root,
+    group => www,
+    mode => 0664,
     recurse => true,
   }
 
