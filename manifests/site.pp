@@ -12,7 +12,12 @@ node default {
   group { "www" :
     require => Package[$build_package],
     ensure => present,
-    members => "ubuntu",
+  }
+
+  user { "ubuntu" :
+    require => Group["www"],
+    ensure => present,
+    groups => "www",
   }
 
   $cmds = [
@@ -27,7 +32,7 @@ node default {
   ]
 
   exec { $cmds :
-    require => Group["www"],
+    require => User["ubuntu"],
   }
 
 }
