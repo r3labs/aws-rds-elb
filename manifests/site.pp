@@ -5,14 +5,14 @@ node default {
   $build_package = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
 
   package { $build_package :
-    ensure => installed,
     require => Class["cron-puppet"],
+    ensure => installed,
   }
 
   group { "www" :
+    require => Package[$build_package],
     ensure => present,
     members => ubuntu,
-    require => Package[$build_package],
   }
 
   $cmds = [
