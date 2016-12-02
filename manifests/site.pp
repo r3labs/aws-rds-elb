@@ -25,6 +25,7 @@ node default {
     ensure => directory,
     owner => root,
     group => www,
+    mode => 2775,
     recurse => true,
   }
 
