@@ -53,7 +53,7 @@ node default {
     require => File["dir_inc"],
     ensure  => file,
     path    => '/var/www/inc/dbinfo.inc',
-    source  => 'puppet:///files/dbinfo.inc',
+    source  => 'puppet:///dbinfo.inc',
     mode    => 0664,
     owner   => root,
     group   => www,
