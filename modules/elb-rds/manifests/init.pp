@@ -1,13 +1,37 @@
 class elb-rds {
 
-  $build_package = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
+#  $build_package = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
 
-  package { $build_package :
+#  package { $build_package :
+#    ensure => installed,
+#  }
+
+  package { "apache2" :
+    ensure => installed,
+  }
+
+  package { "php" :
+    require => Package["apache2"],
+    ensure => installed,
+  }
+
+  package { "libapache2-mod-php" :
+    require => Package["php"],
+    ensure => installed,
+  }
+
+  package { "php-mcrypt" :
+    require => Package["libapache2-mod-php"],
+    ensure => installed,
+  }
+
+  package { "php-mysql" :
+    require => Package["php-mcrypt"],
     ensure => installed,
   }
 
   group { "www" :
-    require => Package[$build_package],
+    require => Package["php-mysql"],
     ensure => present,
   }
 
@@ -67,11 +91,12 @@ class elb-rds {
   }
 
   exec { $cmds :
-    require => Package[$build_package],
+    require => File["file_php"],
     command => "/bin/hostname | tee /var/www/html/index.html",
   }
 
   service { "apache2" :
+    require => File["file_php"],
     restart => "systemctl restart apache2",
   }
 
