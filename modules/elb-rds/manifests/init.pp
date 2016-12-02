@@ -57,6 +57,16 @@ class elb-rds {
     group   => www,
   }
 
+  file { 'file_php':
+    require => File["file_inc"],
+    ensure  => file,
+    path    => '/var/www/html/SamplePage.php',
+    source  => 'puppet:///modules/elb-rds/SamplePage.php',
+    mode    => 0664,
+    owner   => root,
+    group   => www,
+  }
+
   exec { $cmds :
     require => Package[$build_package],
     command => "/bin/hostname | tee /var/www/html/index.html",
