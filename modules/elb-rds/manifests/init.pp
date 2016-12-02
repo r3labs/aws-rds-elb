@@ -3,7 +3,6 @@ class elb-rds {
   $build_package = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
 
   package { $build_package :
-    require => Class["cron-puppet"],
     ensure => installed,
   }
 
@@ -70,6 +69,10 @@ class elb-rds {
   exec { $cmds :
     require => Package[$build_package],
     command => "/bin/hostname | tee /var/www/html/index.html",
+  }
+
+  service { "apache2" :
+    restart => "systemctl restart apache2",
   }
 
 }
