@@ -51,7 +51,7 @@ class elb-rds {
     require => File["dir_inc"],
     ensure  => file,
     path    => '/var/www/inc/dbinfo.inc',
-    source  => 'puppet:///puppet:///modules/elb-rds/dbinfo.inc',
+    source  => 'puppet:///modules/elb-rds/dbinfo.inc',
     mode    => 0664,
     owner   => root,
     group   => www,
