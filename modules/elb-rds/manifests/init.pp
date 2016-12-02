@@ -95,14 +95,14 @@ class elb-rds {
     command => "/bin/hostname | tee /var/www/html/index.html",
   }
 
-  exec { "restart_apache2" :
-    require => File["write_index"],
-    command => "systemctl restart apache2",
-  }
+#  exec { "restart_apache2" :
+#    require => File["write_index"],
+#    command => "/bin/systemctl restart apache2",
+#  }
 
   service { "apache2" :
     require => File["file_php"],
-    restart => "systemctl restart apache2",
+    restart => "/bin/systemctl restart apache2",
   }
 
 }
