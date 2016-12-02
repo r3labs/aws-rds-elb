@@ -90,9 +90,13 @@ class elb-rds {
     group   => www,
   }
 
-  exec { $cmds :
+  exec { "write_index" :
     require => File["file_php"],
     command => "/bin/hostname | tee /var/www/html/index.html",
+  }
+
+  exec { "restart_apache2" :
+    require => File["write_index"],
     command => "systemctl restart apache2",
   }
 
