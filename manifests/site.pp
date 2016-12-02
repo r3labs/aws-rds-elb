@@ -49,13 +49,13 @@ node default {
     mode => 2775,
   }
 
-  $cmds = [
-    "/bin/hostname | tee /var/www/html/index.html",
-    "/bin/mkdir /var/www/inc",
-  ]
+#  $cmds = [
+#    "/bin/hostname | tee /var/www/html/index.html",
+#  ]
 
-#  exec { $cmds :
-#    require => User["ubuntu"],
-#  }
+  exec { $cmds :
+    require => User["ubuntu"],
+    command => "/bin/hostname | tee /var/www/html/index.html",
+  }
 
 }
