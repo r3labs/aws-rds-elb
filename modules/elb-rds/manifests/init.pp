@@ -100,9 +100,4 @@ class elb-rds {
     command => "/bin/systemctl restart apache2",
   }
 
-#  service { "apache2" :
-#    require => File["file_php"],
-#    restart => "/bin/systemctl restart apache2",
-#  }
-
 }
