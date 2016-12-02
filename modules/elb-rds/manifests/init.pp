@@ -96,7 +96,7 @@ class elb-rds {
   }
 
   exec { "restart_apache2" :
-    require => File["write_index"],
+    require => Exec["write_index"],
     command => "/bin/systemctl restart apache2",
   }
 
