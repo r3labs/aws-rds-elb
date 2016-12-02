@@ -22,8 +22,6 @@ node default {
 
   $cmds = [
     "/bin/hostname | tee /var/www/html/index.html",
-#    "/usr/sbin/groupadd www",
-#    "/usr/sbin/usermod -a -G www ubuntu",
     "/bin/chown -R root:www /var/www",
     "/bin/chmod 2775 /var/www",
     "/usr/bin/find /var/www -type d -exec sudo chmod 2775 {} +",
