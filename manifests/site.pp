@@ -21,7 +21,11 @@ node default {
   }
 
   file { "/var/www" :
+    require => User["ubuntu"],
     ensure => directory,
+    owner => root,
+    group => www,
+    recurse => true,
   }
 
   $cmds = [
