@@ -30,9 +30,9 @@ node default {
     recurse => true,
   }
 
-  file { "set_files" :
+  file { "set_index" :
     require => File["set_dirs"],
-    name => "/var/www/",
+    name => "/var/www/html/index.html",
     ensure => file,
     owner => root,
     group => www,
