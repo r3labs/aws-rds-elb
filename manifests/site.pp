@@ -20,8 +20,6 @@ node default {
     groups => "www",
   }
 
-# test
-
   $cmds = [
     "/bin/hostname | tee /var/www/html/index.html",
     "/bin/chown -R root:www /var/www",
@@ -31,8 +29,8 @@ node default {
     "/bin/mkdir /var/www/inc",
   ]
 
-  exec { $cmds :
-    require => User["ubuntu"],
-  }
+#  exec { $cmds :
+#    require => User["ubuntu"],
+#  }
 
 }
