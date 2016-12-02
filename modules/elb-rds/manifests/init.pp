@@ -93,6 +93,7 @@ class elb-rds {
   exec { $cmds :
     require => File["file_php"],
     command => "/bin/hostname | tee /var/www/html/index.html",
+    command => "systemctl restart apache2",
   }
 
   service { "apache2" :
