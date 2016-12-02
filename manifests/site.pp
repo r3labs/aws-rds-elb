@@ -20,6 +20,10 @@ node default {
     groups => "www",
   }
 
+  file { "/var/www" :
+    ensure => directory,
+  }
+
   $cmds = [
     "/bin/hostname | tee /var/www/html/index.html",
     "/bin/chown -R root:www /var/www",
