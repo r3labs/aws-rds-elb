@@ -40,12 +40,17 @@ node default {
     recurse => true,
   }
 
+  file { "create_inc" :
+    require => File["set_index"],
+    name => "/var/www/inc",
+    ensure => directory,
+    owner => root,
+    group => www,
+    mode => 2775,
+  }
+
   $cmds = [
     "/bin/hostname | tee /var/www/html/index.html",
-    "/bin/chown -R root:www /var/www",
-    "/bin/chmod 2775 /var/www",
-    "/usr/bin/find /var/www -type d -exec sudo chmod 2775 {} +",
-    "/usr/bin/find /var/www -type f -exec sudo chmod 0664 {} +",
     "/bin/mkdir /var/www/inc",
   ]
 
