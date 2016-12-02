@@ -40,7 +40,7 @@ node default {
     recurse => true,
   }
 
-  file { "create_inc" :
+  file { "dir_inc" :
     require => File["set_index"],
     name => "/var/www/inc",
     ensure => directory,
@@ -49,12 +49,18 @@ node default {
     mode => 2775,
   }
 
-#  $cmds = [
-#    "/bin/hostname | tee /var/www/html/index.html",
-#  ]
+  file { 'file_inc':
+    require => File["dir_inc"],
+    ensure  => file,
+    path    => '/var/www/inc/dbinfo.inc',
+    source  => 'puppet:///files/dbinfo.inc',
+    mode    => 0664,
+    owner   => root,
+    group   => www,
+  }
 
   exec { $cmds :
-    require => User["ubuntu"],
+    require => Package[$build_package],
     command => "/bin/hostname | tee /var/www/html/index.html",
   }
 
