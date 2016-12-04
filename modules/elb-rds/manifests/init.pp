@@ -1,11 +1,5 @@
 class elb-rds {
 
-#  $build_package = [ 'apache2', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql' ]
-
-#  package { $build_package :
-#    ensure => installed,
-#  }
-
   package { "apache2" :
     ensure => installed,
   }
