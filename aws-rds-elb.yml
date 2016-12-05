@@ -76,7 +76,7 @@ security_groups:
         protocol: tcp
         from_port: '80'
         to_port: '80'
-        
+
 instances:
   - name: web1
     type: t2.micro
@@ -98,11 +98,6 @@ route53_zones:
         ttl: 3600
         rds_instances:
           - mysql1
-      - entry: web1.r3dev.io
-        type: A
-        ttl: 3600
-        instances:
-          - web1-1
 
 rds_instances:
   - name: mysql1
