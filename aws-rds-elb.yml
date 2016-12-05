@@ -83,7 +83,7 @@ instances:
     image: ami-8504fdea
     network: web1
     start_ip: 10.0.12.11
-    count: 3
+    count: 1
     key_pair: jason-work
     user_data: '@{aws-rds-elb-data.yml}'
     security_groups:
