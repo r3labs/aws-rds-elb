@@ -103,7 +103,7 @@ rds_instances:
   - name: mysql1
     size: db.t2.micro
     public: false
-#    availability_zone: eu-central-1a
+    availability_zone: eu-central-1a
     networks: 
       - web1
       - web2
