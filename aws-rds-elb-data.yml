@@ -1,0 +1,13 @@
+#cloud-config
+
+repo_update: true
+repo_upgrade: all
+
+packages:
+ - puppet
+ - git-core
+
+runcmd:
+ - 'mv /etc/puppet/ /etc/puppet-bak'
+ - 'git clone https://github.com/r3labs/aws-rds-elb.git /etc/puppet'
+ - '/usr/bin/puppet apply /etc/puppet/manifests/site.pp'
