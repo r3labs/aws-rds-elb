@@ -1,24 +1,24 @@
 ---
-name: test5
+name: demo
 datacenter: aws-de
 
 vpc_subnet: 10.0.0.0/16
 
 networks:
-  - name: web1
+  - name: dmz1
     subnet: 10.0.11.0/24
     availability_zone: eu-central-1a
     public: true
-  - name: db1
+  - name: web1
     subnet: 10.0.12.0/24
     availability_zone: eu-central-1a
     public: false
     nat_gateway: nat1
-  - name: web2
+  - name: dmz2
     subnet: 10.0.13.0/24
     availability_zone: eu-central-1b
     public: true
-  - name: db2
+  - name: web2
     subnet: 10.0.14.0/24
     availability_zone: eu-central-1b
     public: false
@@ -26,9 +26,9 @@ networks:
 
 nat_gateways:
   - name: nat1
-    public_network: web1
+    public_network: dmz1
   - name: nat2
-    public_network: web2
+    public_network: dmz2
 
 security_groups:
   - name: sg-vm
@@ -67,7 +67,7 @@ instances:
     type: t2.micro
     image: ami-8504fdea
     network: web1
-    start_ip: 10.0.11.11
+    start_ip: 10.0.12.11
     count: 1
     key_pair: jason-work
     user_data: '@{aws-rds-elb-data.yml}'
@@ -95,8 +95,8 @@ rds_instances:
     public: false
 #    availability_zone: eu-central-1a
     networks: 
-      - db1
-      - db2
+      - web1
+      - web2
     port: 3306
     license: general-public-license
     security_groups:
