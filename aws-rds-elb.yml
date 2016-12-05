@@ -83,7 +83,7 @@ instances:
     image: ami-8504fdea
     network: web1
     start_ip: 10.0.12.11
-    count: 1
+    count: 3
     key_pair: jason-work
     user_data: '@{aws-rds-elb-data.yml}'
     security_groups:
@@ -98,6 +98,11 @@ route53_zones:
         ttl: 3600
         rds_instances:
           - mysql1
+      - entry: demo.r3dev.io
+        type: CNAME
+        ttl: 3600
+        loadbalancers:
+          - elb1
 
 rds_instances:
   - name: mysql1
