@@ -61,7 +61,22 @@ security_groups:
         protocol: tcp
         from_port: '0'
         to_port: '65535'
-
+  - name: sg-elb
+    egress:
+      - ip: 0.0.0.0/0
+        protocol: any
+        from_port: '0'
+        to_port: '65535'
+    ingress:
+      - ip: 10.0.0.0/16
+        protocol: tcp
+        from_port: '0'
+        to_port: '65535'
+      - ip: 0.0.0.0/0
+        protocol: tcp
+        from_port: '80'
+        to_port: '80'
+        
 instances:
   - name: web1
     type: t2.micro
@@ -108,4 +123,16 @@ rds_instances:
     database_name: mysqltest5
     database_username: mysqltest5
     database_password: mysqltest5
-    
+
+loadbalancers:
+  - name: elb1
+    networks:
+      - dmz1
+    instances:
+      - web1
+    listeners:
+      - from_port: 80
+        to_port: 80
+        protocol: http
+    security_groups:
+      - sg-elb
