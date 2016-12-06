@@ -1,4 +1,4 @@
-class cron-puppet {
+class cron_puppet {
     file { 'post-hook':
         ensure  => file,
         path    => '/etc/puppet/.git/hooks/post-merge',

@@ -1,4 +1,4 @@
-class elb-rds {
+class elb_rds {
 
   package { "apache2" :
     ensure => installed,
