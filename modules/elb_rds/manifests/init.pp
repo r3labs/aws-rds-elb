@@ -69,7 +69,7 @@ class elb_rds {
     require => File['dir_inc'],
     path    => '/var/www/inc/dbinfo.inc',
     source  => 'puppet:///modules/elb-rds/dbinfo.inc',
-    mode    => 0664,
+    mode    => '0664',
     owner   => root,
     group   => www,
   }
@@ -79,7 +79,7 @@ class elb_rds {
     require => File['file_inc'],
     path    => '/var/www/html/SamplePage.php',
     source  => 'puppet:///modules/elb-rds/SamplePage.php',
-    mode    => 0664,
+    mode    => '0664',
     owner   => root,
     group   => www,
   }
