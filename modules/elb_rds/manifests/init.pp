@@ -20,48 +20,48 @@ class elb_rds {
   }
 
   package { 'php-mysql' :
-    ensure => installed,
+    ensure  => installed,
     require => Package['php-mcrypt'],
   }
 
   group { 'www' :
-    ensure => present,
+    ensure  => present,
     require => Package['php-mysql'],
   }
 
   user { 'ubuntu' :
-    ensure => present,
+    ensure  => present,
     require => Group['www'],
-    groups => 'www',
+    groups  => 'www',
   }
 
   file { 'set_dirs' :
-    ensure => directory,
+    ensure  => directory,
     require => User['ubuntu'],
-    name => '/var/www',
-    owner => root,
-    group => www,
-    mode => '2775',
+    name    => '/var/www',
+    owner   => root,
+    group   => www,
+    mode    => '2775',
     recurse => true,
   }
 
   file { 'set_index' :
-    ensure => file,
+    ensure  => file,
     require => File['set_dirs'],
-    name => '/var/www/html/index.html',
-    owner => root,
-    group => www,
-    mode => '0664',
+    name    => '/var/www/html/index.html',
+    owner   => root,
+    group   => www,
+    mode    => '0664',
     recurse => true,
   }
 
   file { 'dir_inc' :
-    ensure => directory,
+    ensure  => directory,
     require => File['set_index'],
-    name => '/var/www/inc',
-    owner => root,
-    group => www,
-    mode => '2775',
+    name    => '/var/www/inc',
+    owner   => root,
+    group   => www,
+    mode    => '2775',
   }
 
   file { 'file_inc':
