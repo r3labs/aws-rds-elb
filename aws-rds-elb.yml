@@ -9,18 +9,15 @@ networks:
     subnet: 10.0.11.0/24
     availability_zone: eu-central-1a
     public: true
-
   - name: web1
     subnet: 10.0.12.0/24
     availability_zone: eu-central-1a
     public: false
     nat_gateway: nat1
-
   - name: dmz2
     subnet: 10.0.13.0/24
     availability_zone: eu-central-1b
     public: true
-
   - name: web2
     subnet: 10.0.14.0/24
     availability_zone: eu-central-1b
@@ -30,7 +27,6 @@ networks:
 nat_gateways:
   - name: nat1
     public_network: dmz1
-
   - name: nat2
     public_network: dmz2
 
@@ -54,7 +50,6 @@ security_groups:
         protocol: tcp
         from_port: '0'
         to_port: '65535'
-
   - name: sg-rds
     egress:
       - ip: 10.0.0.0/16
@@ -66,7 +61,6 @@ security_groups:
         protocol: tcp
         from_port: '0'
         to_port: '65535'
-
   - name: sg-elb
     egress:
       - ip: 0.0.0.0/0
@@ -104,7 +98,6 @@ route53_zones:
         ttl: 3600
         rds_instances:
           - mysql1
-
       - entry: demo.r3dev.io
         type: CNAME
         ttl: 3600
