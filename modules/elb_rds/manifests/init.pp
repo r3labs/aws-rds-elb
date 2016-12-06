@@ -41,7 +41,7 @@ class elb_rds {
     name => '/var/www',
     owner => root,
     group => www,
-    mode => 2775,
+    mode => '2775',
     recurse => true,
   }
 
@@ -51,7 +51,7 @@ class elb_rds {
     name => '/var/www/html/index.html',
     owner => root,
     group => www,
-    mode => 0664,
+    mode => '0664',
     recurse => true,
   }
 
@@ -61,7 +61,7 @@ class elb_rds {
     name => '/var/www/inc',
     owner => root,
     group => www,
-    mode => 2775,
+    mode => '2775',
   }
 
   file { 'file_inc':
