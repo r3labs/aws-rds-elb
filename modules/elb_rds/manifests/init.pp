@@ -5,17 +5,17 @@ class elb_rds {
   }
 
   package { 'php' :
-    ensure => installed,
+    ensure  => installed,
     require => Package['apache2'],
   }
 
   package { 'libapache2-mod-php' :
-    ensure => installed,
+    ensure  => installed,
     require => Package['php'],
   }
 
   package { 'php-mcrypt' :
-    ensure => installed,
+    ensure  => installed,
     require => Package['libapache2-mod-php'],
   }
 
