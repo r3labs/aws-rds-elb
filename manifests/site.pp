@@ -1,7 +1,7 @@
 node default {
 
-  include cron-puppet
+  include cron_puppet
 
-  include elb-rds
+  include elb_rds
 
 }
