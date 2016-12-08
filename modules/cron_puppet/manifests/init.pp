@@ -2,7 +2,7 @@ class cron_puppet {
     file { 'post-hook':
         ensure => file,
         path   => '/etc/puppet/.git/hooks/post-merge',
-        source => 'puppet:///modules/cron-puppet/post-merge',
+        source => 'puppet:///modules/cron_puppet/post-merge',
         mode   => '0755',
         owner  => root,
         group  => root,
