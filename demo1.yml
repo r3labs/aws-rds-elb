@@ -7,50 +7,6 @@ vpcs:
     subnet: 10.0.0.0/16
     auto_remove: true
 
-networks:
-  - name: dmz1
-    vpc: vpc1
-    subnet: 10.0.11.0/24
-    availability_zone: eu-central-1a
-    public: true
-  - name: web1
-    vpc: vpc1
-    subnet: 10.0.12.0/24
-    availability_zone: eu-central-1a
-    public: false
-    nat_gateway: nat1
-  - name: dmz2
-    vpc: vpc1
-    subnet: 10.0.13.0/24
-    availability_zone: eu-central-1b
-    public: true
-  - name: web2
-    vpc: vpc1
-    subnet: 10.0.14.0/24
-    availability_zone: eu-central-1b
-    public: false
-    nat_gateway: nat2
-
-nat_gateways:
-  - name: nat1
-    public_network: dmz1
-  - name: nat2
-    public_network: dmz2
-
-security_groups:
-  - name: rds-sg
-    vpc: vpc1
-    egress:
-      - ip: 10.0.0.0/16
-        protocol: tcp
-        from_port: '0'
-        to_port: '65535'
-    ingress:
-      - ip: 10.0.0.0/16
-        protocol: tcp
-        from_port: '0'
-        to_port: '65535'
-
 route53_zones:
   - name: r3dev.io
     private: false
@@ -60,23 +16,3 @@ route53_zones:
         ttl: 3600
         values:
           - 8.8.8.8
-
-rds_instances:
-  - name: mysql1
-    size: db.t2.micro
-    public: false
-    availability_zone: eu-central-1a
-    networks: 
-      - web1
-      - web2
-    port: 3306
-    license: general-public-license
-    security_groups:
-      - rds-sg
-    engine: mysql
-    storage:
-      type: gp2
-      size: 20
-    database_name: mysqltest5
-    database_username: mysqltest5
-    database_password: mysqltest5
