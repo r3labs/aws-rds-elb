@@ -82,7 +82,10 @@ instances:
     user_data: '@{aws-rds-elb-data.yml}'
     security_groups:
       - vm-sg
-
+    volumes:
+      - volume: test-vol
+        device: /dev/sdx
+        
 route53_zones:
   - name: r3dev.io
     private: false
@@ -112,3 +115,10 @@ rds_instances:
     database_name: mysqltest5
     database_username: mysqltest5
     database_password: mysqltest5
+
+ebs_volumes:
+   - name: test-vol
+     count: 2
+     type: gp2
+     size: 10
+     availability_zone: eu-central-1a

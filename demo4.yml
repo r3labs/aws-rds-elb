@@ -98,7 +98,10 @@ instances:
     user_data: '@{aws-rds-elb-data.yml}'
     security_groups:
       - vm-sg
-
+    volumes:
+      - volume: test-vol
+        device: /dev/sdx
+        
 route53_zones:
   - name: r3dev.io
     private: false
@@ -151,3 +154,10 @@ s3_buckets:
   - name: reidjc-s3-test1
     bucket_location: eu-central-1
     acl: private
+
+ebs_volumes:
+   - name: test-vol
+     count: 2
+     type: gp2
+     size: 10
+     availability_zone: eu-central-1a
